@@ -1,37 +1,84 @@
-import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
-        task_one();
-        task_two();
-        task_three();
+        long inputGold = 200L;
+        byte inputSilver = 39;
+        short inputWood = 2005;
+        long inputHealth = 97L;
+        boolean inputHasHelper = true;
+
+        Resources characterResources = new Resources(
+                inputGold,
+                inputSilver,
+                inputWood,
+                inputHealth,
+                inputHasHelper
+        );
+
+        int characterGold = (int)characterResources.gold;
+        int characterSilver = characterResources.silver * 100;
+        double characterWood = characterResources.wood;
+        byte characterHealth = (byte)characterResources.health;
+        byte characterHelpersNumber = (byte) (characterResources.hasHelper ? 1 : 0);
+
+
+        Character character = new Character(
+                characterGold,
+                characterSilver,
+                characterWood,
+                characterHealth,
+                characterHelpersNumber
+        );
+
+        System.out.println("Персонаж создан успешно!");
+        System.out.println("Количество золота: " + character.gold);
+        System.out.println("Количество серебра: " + character.silver);
+        System.out.println("Количество дерева: " + character.wood);
+        System.out.println("Здоровье: " + character.health);
+        System.out.println("Количество помощников: " + character.helpersNumber);
+        System.out.println("Навстречу приключениям!");
     }
+}
 
-    public static void task_one(){
-        final double rubles = 30002.7;
+class Resources {
+    long gold;
+    byte silver;
+    short wood;
+    long health;
+    boolean hasHelper;
 
-        final double rateUSD = 78.5;
-
-        System.out.println("У вас на счету " + rubles + " рублей. В долларах это "+ rubles / rateUSD + " долларов. Так держать!");
+    public Resources(
+            long inputGold,
+            byte inputSilver,
+            short inputWood,
+            long inputHealth,
+            boolean inputHasHelper
+    ) {
+        gold = inputGold;
+        silver = inputSilver;
+        wood = inputWood;
+        health = inputHealth;
+        hasHelper = inputHasHelper;
     }
-    public static void task_two(){
-        Scanner in = new Scanner(System.in);
+}
 
-        System.out.println("Введите какая сейчас погода:");
+class Character {
+    int gold;
+    int silver;
+    double wood;
+    byte health;
+    byte helpersNumber;
 
-        String weather = in.next();
-
-        System.out.println(weather.equals("Дождь")? "Беру с собой зонт" : "Иду налегке");
-
-        System.out.println("Люблю гулять!");
+    public Character(
+            int characterGold,
+            int characterSilver,
+            double characterWood,
+            byte characterHealth,
+            byte characterHelpersNumber
+    ) {
+        gold = characterGold;
+        silver = characterSilver;
+        wood = characterWood;
+        health = characterHealth;
+        helpersNumber = characterHelpersNumber;
     }
-    public static void task_three(){
-        Scanner in = new Scanner(System.in);
-
-        System.out.println("Сколько у вас яиц в холодильнике?");
-
-        int count_egg = in.nextInt();
-
-        System.out.println(count_egg >= 3? "Рекомендую приготовить омлет." : "Рекомендую позавтракать бутербродами.");
-
-        System.out.println("Приятного аппетита!");
-    }
+}
